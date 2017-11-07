@@ -8,7 +8,7 @@ export default class SearchBar extends Component {
     render() {
         return (
 
-            <div className="aggiustamentoSearchBar">
+            <div id="SearchBarComponent">
 
                 
                     <AutoSuggestSearchBar />

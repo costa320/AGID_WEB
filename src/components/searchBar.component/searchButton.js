@@ -1,18 +1,13 @@
 import React, {Component} from 'react';
 
-const style = {
-    margin: 25,
-  };
-
-
 export default class SearchButtonComponent extends Component {
 
 
     render() {
         return (
-            <div className="containerBottone">
-                <button type="submit" className="RiDimensionamentoBottone">Esplora</button>
-            </div>
+            
+                <button type="submit" className="Button RiDimensionamento Grid-cell u-sizeFit u-background-60 u-color-white u-textWeight-600 u-padding-r-left u-padding-r-right u-textUppercase u-borderRadius-s">Esplora</button>
+            
         );
     }
 
