@@ -9,12 +9,10 @@ export default class SearchBar extends Component {
         return (
 
             <div id="SearchBarComponent">
-
-                
+ 
                     <AutoSuggestSearchBar />
                     <SearchButtonComponent />
                
-
             </div>
         
         );
