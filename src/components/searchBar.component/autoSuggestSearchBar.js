@@ -3,7 +3,21 @@ import axios from 'axios';
 import Autosuggest from 'react-autosuggest';
 
 
-var sugg = [];
+var sugg = [
+  {name:"Prova"},
+  {name:"Prova"},
+  {name:"Prova"},
+  {name:"Prova"},
+  {name:"Prova"},
+  {name:"Prova"},
+  {name:"Prova"},
+  {name:"Prova"},
+  {name:"Prova"},
+  {name:"Prova"},
+  {name:"Prova"},
+  {name:"Prova"},
+  {name:"Prova"},
+];
   
   function shouldRenderSuggestions(value) {
     
