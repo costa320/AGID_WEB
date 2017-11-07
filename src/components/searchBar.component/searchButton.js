@@ -8,8 +8,6 @@ function handleSearch (){
 
 export default class SearchButtonComponent extends Component {
 
-    
-
 
     render() {
         return (
