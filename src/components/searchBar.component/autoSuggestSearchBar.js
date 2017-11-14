@@ -3,21 +3,7 @@ import axios from 'axios';
 import Autosuggest from 'react-autosuggest';
 
 
-var sugg = [
-  {name:"Prova"},
-  {name:"Prova"},
-  {name:"Prova"},
-  {name:"Prova"},
-  {name:"Prova"},
-  {name:"Prova"},
-  {name:"Prova"},
-  {name:"Prova"},
-  {name:"Prova"},
-  {name:"Prova"},
-  {name:"Prova"},
-  {name:"Prova"},
-  {name:"Prova"},
-];
+var sugg = [];
   
   function shouldRenderSuggestions(value) {
     
@@ -35,6 +21,19 @@ var sugg = [
 
   
   function getSuggestionValue(suggestion) {
+
+    axios.post('/ricerca', {
+      textSearch: suggestion,
+    })
+    .then(function (response) {
+      console.log("response:");
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log("errore:");
+      console.log(error);
+    });
+
     return suggestion.name;
   }
   
@@ -59,6 +58,12 @@ var sugg = [
     }
 
 
+    componentDidMount() {
+
+      console.log("il component searchbar è stato montato");
+      
+
+    }
 
     nullFormattedArray(){
         this.setState({formattedArray:[]});
@@ -80,11 +85,10 @@ var sugg = [
   
     AjaxRequest(input) {
         
-                var URL = "http://10.100.203.99:5000/suggestions/" + input;
+                var URL = "http://52.142.209.88/tagsservice/suggestions/" + input;
                 var self = this;
         
                 axios.get(URL,{
-                  
                   headers: {
                     'Access-Control-Allow-Origin': '*',
                     crossdomain: true,
@@ -148,7 +152,7 @@ var sugg = [
       };
       return (
 
-        <Autosuggest 
+        <Autosuggest
           suggestions={suggestions}
         /* These are the suggestions that will be displayed. Items can take an arbitrary shape. */
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -165,11 +169,8 @@ var sugg = [
         /* Pass through arbitrary props to the input. It must contain at least value and onChange. */
           highlightFirstSuggestion={true}
          /* Autosuggest to automatically highlight the first suggestion. */ 
-         alwaysRenderSuggestions={true}
+         alwaysRenderSuggestions={false}
          />
-        
-         
-      
       );
       
     }

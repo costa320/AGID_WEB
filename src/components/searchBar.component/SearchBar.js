@@ -4,17 +4,16 @@ import SearchButtonComponent from './searchButton';
 
 export default class SearchBar extends Component {
 
-
     render() {
         return (
 
-            <div id="SearchBarComponent">
- 
-                    <AutoSuggestSearchBar />
-                    <SearchButtonComponent />
-               
+            <div>
+                <form method="post" action="/ricerca">
+                    <AutoSuggestSearchBar/>
+                    <SearchButtonComponent/>
+                </form>
             </div>
-        
+
         );
     }
 
