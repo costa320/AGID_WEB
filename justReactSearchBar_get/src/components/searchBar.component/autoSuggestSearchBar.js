@@ -8,18 +8,21 @@ var sugg = [];
   
   
   function getSuggestions(value) {
-
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
+    /* console.log("prendo tutti i valori delle suggestions") */
+    /* const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length; */
       return sugg;
   }
 
   
   function getSuggestionValue(suggestion) {
+    /* console.log("prendo un valore della suggestion") */
     return suggestion.name;
   }
   
   function renderSuggestion(suggestion) {
+    /* console.log("renderizzo una suggestion"); */
+
     return (
       <span>{suggestion.name}</span>
     );
@@ -57,6 +60,7 @@ var sugg = [];
     }
 
     componentDidMount() {
+      /* console.log("component montato") */
       var v=sessionStorage.getItem('valueInput');
       if(sessionStorage.getItem('valueInput'))
       {
@@ -67,7 +71,8 @@ var sugg = [];
     }
     
     AjaxRequest(input) {
-        
+            /* console.log("inizio metodo chiamata ajax") */
+
                 var URL = "http://52.142.209.88/tagsservice/suggestions/" + input;
                 var self = this;
 
@@ -80,6 +85,7 @@ var sugg = [];
                   }
                 }).then(function (response) {
                         /* console.log("length:"+response.data.results.length); */
+                        /* console.log("eseguo chiamata ajax") */
                         self.setState({ajaxResponse: response.data});
                         console.log("response: ");
                         console.log(response.data);
@@ -97,17 +103,25 @@ var sugg = [];
                             /* Pusho l'oggetto d'appoggio nell'array formattedArrayOfObjects */
 
                             sugg.push(appoggio);
-/*                             console.log("sugg:");
-                            console.log(sugg); */
+/*                              console.log("sugg:");
+                                console.log(sugg); */
                             
                         }//end for
-                        document.getElementById("cerca").dispatchEvent(new Event('blur'));
-                        document.getElementById("cerca").dispatchEvent(new Event('focus'));
+                        /* document.getElementById("cerca").dispatchEvent(new Event('blur'));
+                        document.getElementById("cerca").dispatchEvent(new Event('focus')); */
                         /* document.getElementById("cerca").dispatchEvent(new Event('onchange')); */
+                        /* console.log("finisco la chiamata ajax")
+                        console.log("cerco di rifare la renderizzazione")
+                        console.log("vaRIABILE INPUT: "+input) */
+
+                        //Serve per ri-renderizzare la lista dei suggerimenti
+                        self.onSuggestionsFetchRequested({input});
+
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
+                    /* console.log("fine metodo della chiamata ajax") */
                     
             }
 
@@ -115,6 +129,8 @@ var sugg = [];
     
 
     onChange = (event, { newValue, method }) => {
+     
+      /* console.log("!!!---è schioccato l'evento del onChange") */
       this.setState({value: newValue});
       if(newValue.length<3){
         sugg=[];
@@ -123,12 +139,14 @@ var sugg = [];
     };
 
     onSuggestionsFetchRequested = ({ value }) => {
+      /* console.log("fetcho la richiesta onSuggestionsFetchRequested") */
       this.setState({
         suggestions: getSuggestions(value)
       });
     };
   
     onSuggestionsClearRequested = () => {
+      /* console.log("pulisco l'array: suggestions") */
       this.setState({
         suggestions: []
       });
@@ -166,3 +184,7 @@ var sugg = [];
       
     }
   }
+
+
+// WEBPACK FOOTER //
+// src/components/searchBar.component/autoSuggestSearchBar.js
