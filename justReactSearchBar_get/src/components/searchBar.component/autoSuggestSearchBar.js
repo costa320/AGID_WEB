@@ -6,25 +6,16 @@ import Autosuggest from 'react-autosuggest';
 
 var sugg = [];
   
-  function shouldRenderSuggestions(value) {
-    
-    return value.trim().length >= 3;
-  }
   
   function getSuggestions(value) {
 
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
-    /* return inputLength === 0 ? [] : sugg.filter(lang =>
-      lang.name.toLowerCase().slice(0, inputLength) === inputValue); */
       return sugg;
   }
 
   
   function getSuggestionValue(suggestion) {
-
-    
-
     return suggestion.name;
   }
   
@@ -45,10 +36,9 @@ var sugg = [];
         ajaxResponse:[],
         formattedArray:[],
         formattedArrayOfObjects:[],
+        valueSearched:""
       };    
     }
-
-
 
     nullFormattedArray(){
         this.setState({formattedArray:[]});
@@ -66,12 +56,22 @@ var sugg = [];
       this.setState({suggestions:[]});
     }
 
+    componentDidMount() {
+      var v=sessionStorage.getItem('valueInput');
+      if(sessionStorage.getItem('valueInput'))
+      {
+      this.setState({value:v});
+      sessionStorage.removeItem('valueInput');
+    }
 
-  
+    }
+    
     AjaxRequest(input) {
         
                 var URL = "http://52.142.209.88/tagsservice/suggestions/" + input;
                 var self = this;
+
+                sessionStorage.setItem('valueInput', input);
         
                 axios.get(URL,{
                   headers: {
@@ -83,7 +83,6 @@ var sugg = [];
                         self.setState({ajaxResponse: response.data});
                         console.log("response: ");
                         console.log(response.data);
-
                         self.nullFormattedArray();
                         self.nullFormattedArrayOfObjects();
                         if(input.length<3) self.onSuggestionsClearRequested();
@@ -100,13 +99,20 @@ var sugg = [];
                             sugg.push(appoggio);
 /*                             console.log("sugg:");
                             console.log(sugg); */
+                            
                         }//end for
+                        document.getElementById("cerca").dispatchEvent(new Event('blur'));
+                        document.getElementById("cerca").dispatchEvent(new Event('focus'));
+                        /* document.getElementById("cerca").dispatchEvent(new Event('onchange')); */
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
                     
             }
+
+
+    
 
     onChange = (event, { newValue, method }) => {
       this.setState({value: newValue});
@@ -133,7 +139,9 @@ var sugg = [];
       const inputProps = {
         placeholder: "Cerca",
         value,
-        onChange: this.onChange
+        onChange: this.onChange,
+        name:"cerca",
+        id:"cerca",
       };
       return (
 
@@ -145,16 +153,14 @@ var sugg = [];
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         /* Will be called every time you need to set suggestions to []. */
           getSuggestionValue={getSuggestionValue}
-        /* Implement it to teach Autosuggest what should be the input value when suggestion is clicked. */
-          renderSuggestion={renderSuggestion}
         /* Use your imagination to define how suggestions are rendered. */
-          shouldRenderSuggestions={shouldRenderSuggestions}
-        /* Use it, for example, if you want to display suggestions when input value is at least 2 characters long.*/
           inputProps={inputProps}
         /* Pass through arbitrary props to the input. It must contain at least value and onChange. */
           highlightFirstSuggestion={true}
          /* Autosuggest to automatically highlight the first suggestion. */ 
-         alwaysRenderSuggestions={false}
+          alwaysRenderSuggestions={false}
+          /* Implement it to teach Autosuggest what should be the input value when suggestion is clicked. */
+          renderSuggestion={renderSuggestion}
          />
       );
       
