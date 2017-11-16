@@ -5,7 +5,7 @@ import Autosuggest from 'react-autosuggest';
 
 
 var sugg = [];
-  
+var valSuggestCliccato=false;
   
   function getSuggestions(value) {
     /* console.log("prendo tutti i valori delle suggestions") */
@@ -17,10 +17,11 @@ var sugg = [];
   
   function getSuggestionValue(suggestion) {
     /* console.log("prendo un valore della suggestion") */
+    valSuggestCliccato=true;
     return suggestion.name;
-  }
+  } 
   
-  function renderSuggestion(suggestion) {
+  function renderSuggestion(suggestion) { 
     /* console.log("renderizzo una suggestion"); */
 
     return (
@@ -107,15 +108,12 @@ var sugg = [];
                                 console.log(sugg); */
                             
                         }//end for
-                        /* document.getElementById("cerca").dispatchEvent(new Event('blur'));
-                        document.getElementById("cerca").dispatchEvent(new Event('focus')); */
-                        /* document.getElementById("cerca").dispatchEvent(new Event('onchange')); */
-                        /* console.log("finisco la chiamata ajax")
-                        console.log("cerco di rifare la renderizzazione")
-                        console.log("vaRIABILE INPUT: "+input) */
 
                         //Serve per ri-renderizzare la lista dei suggerimenti
-                        self.onSuggestionsFetchRequested({input});
+                        
+                          self.onSuggestionsFetchRequested({input});
+                         
+                        
 
                     })
                     .catch(function (error) {
