@@ -137,9 +137,15 @@ var valSuggestCliccato=false;
       /* console.log("!!!---è schioccato l'evento del onChange") */
       this.setState({value: newValue});
       if(newValue.length<3){
+
+        /* document.getElementById("buttonCerca").disabled=true; */
         sugg=[];
+
       }//end if
-      else  this.AjaxRequest(newValue);
+      else  {
+        this.AjaxRequest(newValue);
+        /* document.getElementById("buttonCerca").disabled=false; */
+      }
     };
 
     onSuggestionsFetchRequested = ({ value }) => {
