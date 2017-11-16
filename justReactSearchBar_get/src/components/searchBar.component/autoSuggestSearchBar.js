@@ -111,7 +111,13 @@ var valSuggestCliccato=false;
 
                         //Serve per ri-renderizzare la lista dei suggerimenti
                         
-                          self.onSuggestionsFetchRequested({input});
+                          if(valSuggestCliccato==true)
+                          {
+                              valSuggestCliccato=false;
+                          }//end if
+                          else{
+                            self.onSuggestionsFetchRequested({input});
+                          }//end else
                          
                         
 
