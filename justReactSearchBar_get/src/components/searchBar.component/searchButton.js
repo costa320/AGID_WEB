@@ -30,7 +30,7 @@ export default class SearchButtonComponent extends Component {
         return (
             <div className="RiDimensionamento">
 
-                        <button data-toggle="tooltip" data-placement="bottom" title="Tooltip on left"  type="submit" id="buttonCerca" onClick={(this.search)} className="Button u-padding-all-xs Grid-cell u-sizeFit u-background-60 u-color-white u-textWeight-600 u-padding-r-left u-padding-r-right u-textUppercase u-borderRadius-s">Cerca</button>
+                        <button type="submit" id="buttonCerca" onClick={(this.search)} className="Button u-padding-all-xs Grid-cell u-sizeFit u-background-60 u-color-white u-textWeight-600 u-padding-r-left u-padding-r-right u-textUppercase u-borderRadius-s">Cerca</button>
             
             </div>
         );
