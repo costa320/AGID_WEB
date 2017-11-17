@@ -13,15 +13,13 @@ export default class SearchButtonComponent extends Component {
 /*         if(v.length<3){
             document.getElementById("controlloCar").style.display = 'block';
         } */
-        document.getElementById("buttonCerca").tooltip();
+        /* document.getElementById("buttonCerca").tooltip(); */
 
         var v = document.getElementById("cerca").value;
 
         if(v.length<3){
             /* document.getElementById("buttonCerca").type = "button"; */
         }
-        
-        
 
     }
     
