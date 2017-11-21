@@ -1,35 +1,17 @@
 import React, {Component} from 'react';
-/* import {withRouter} from 'react-router'; */
+import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 
 export default class SearchButtonComponent extends Component {
-
-    componentDidMount(){
-        /* document.getElementById("buttonCerca").disabled=true; */
+    ReloadPage(){
+        window.location.reload(true);
     }
-
-    search(){
-/*         var v = document.getElementById("cerca").value; */
-
-/*         if(v.length<3){
-            document.getElementById("controlloCar").style.display = 'block';
-        } */
-        /* document.getElementById("buttonCerca").tooltip(); */
-
-        var v = document.getElementById("cerca").value;
-
-        if(v.length<3){
-            /* document.getElementById("buttonCerca").type = "button"; */
-        }
-
-    }
-    
 
     render() {
         return (
             <div className="RiDimensionamento">
-
-                        <button type="submit" id="buttonCerca" onClick={(this.search)} className="Button u-padding-all-xs Grid-cell u-sizeFit u-background-60 u-color-white u-textWeight-600 u-padding-r-left u-padding-r-right u-textUppercase u-borderRadius-s">Cerca</button>
-            
+                <Router>
+                    <Link exact activeClassName='active' to='/ricerca'><button id="buttonCerca" type="submit" onClick={(this.ReloadPage)} className="Button u-padding-all-xs Grid-cell u-sizeFit u-background-60 u-color-white u-textWeight-600 u-padding-r-left u-padding-r-right u-textUppercase u-borderRadius-s">Cerca</button></Link>
+                </Router>
             </div>
         );
     }

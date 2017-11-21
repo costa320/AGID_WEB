@@ -184,7 +184,7 @@ var valSuggestCliccato=false;
         /* Use your imagination to define how suggestions are rendered. */
           inputProps={inputProps}
         /* Pass through arbitrary props to the input. It must contain at least value and onChange. */
-          highlightFirstSuggestion={true}
+          highlightFirstSuggestion={false}
          /* Autosuggest to automatically highlight the first suggestion. */ 
           alwaysRenderSuggestions={false}
           /* Implement it to teach Autosuggest what should be the input value when suggestion is clicked. */
